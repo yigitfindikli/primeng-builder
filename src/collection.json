@@ -6,6 +6,12 @@
       "factory": "./shell",
       "schema": "./shell/schema.json",
       "aliases": [ "primeng-shell" ]
+    },
+    "accordionModule": {
+      "description": "Adds PrimeNG accordion module",
+      "factory": "./accordion",
+      "schema": "./accordion/schema.json",
+      "aliases": [ "accordion" ]
     }
   }
 }

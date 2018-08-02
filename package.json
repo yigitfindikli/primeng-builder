@@ -1,6 +1,6 @@
 {
   "name": "primeng-builder",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -9,7 +9,7 @@
   "keywords": [
     "schematics"
   ],
-  "author": "",
+  "author": "yigitfindikli",
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
@@ -20,5 +20,15 @@
     "@types/node": "^8.0.31",
     "jasmine": "^2.8.0",
     "typescript": "^2.5.2"
-  }
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yigitfindikli/primeng-builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yigitfindikli/primeng-builder/issues"
+  },
+  "homepage": "https://github.com/yigitfindikli/primeng-builder#readme"
 }

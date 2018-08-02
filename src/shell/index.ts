@@ -14,12 +14,7 @@ import { getProjectFromWorkspace, getWorkspace } from '../utils/devkit-utils/con
 import { Schema } from './schema';
 import { addThemeToAppStyles } from './theming';
 
-/**
- * Scaffolds the basics of a PrimeNG application, this includes:
- *  - Add Packages to package.json
- *  - Adds pre-built themes to styles.ext
- *  - Adds Browser Animation to app.momdule
- */
+
 export default function(options: Schema): Rule {
   return chain([
     options && options.skipPackageJson ? noop() : addPrimengToPackageJson(),
@@ -28,9 +23,6 @@ export default function(options: Schema): Rule {
   ]);
 }
 
-/**
- * Add primeng packages to package.json if not already present.
- */
 function addPrimengToPackageJson() {
   return (host: Tree, context: SchematicContext) => {
     addPackageToPackageJson(host, 'dependencies', 'primeng', primengVersion);
@@ -43,9 +35,6 @@ function addPrimengToPackageJson() {
   };
 }
 
-/**
- * Add browser animation module to app.module.
- */
 function addAnimationRootConfig(options: Schema) {
   return (host: Tree) => {
     const workspace = getWorkspace(host);

@@ -8,28 +8,26 @@ import {
 import {Schema} from './schema';
 import { getStylesPath } from '../utils/ast';
 
-/**
- * Add pre-built styles to the main project style file.
- */
+
 export function addThemeToAppStyles(options: Schema): (host: Tree) => Tree {
   return function(host: Tree): Tree {
     const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
 
-    // Because the build setup for the Angular CLI can be changed so dramatically, we can't know
-    // where to generate anything if the project is not using the default config for build and test.
+    
     assertDefaultProjectConfig(project);
 
     const themeName = options.theme || 'omega';
     insertPrebuiltTheme(project, host, themeName, workspace);
-
+    host.overwrite(getStylesPath('',getProjectFromWorkspace(workspace)),"@import '../node_modules/primeng/resources/themes/"+themeName+"/theme.css';\n"+
+  "@import '../node_modules/primeicons/primeicons.css';\n"
+  +"@import '../node_modules/primeng/resources/primeng.min.css';\n"
+  +"@import '../node_modules/font-awesome/css/font-awesome.css';\n");
     return host;
   };
 }
 
-/**
- * Insert a pre-built theme and its dependencies into the angular.json file.
- */
+
 function insertPrebuiltTheme(project: Project, host: Tree, theme: string, workspace: Workspace) {
   const themeFilePaths = [
     'node_modules/font-awesome/css/font-awesome.css',
@@ -68,10 +66,6 @@ function addStyleToTarget(target: any, host: Tree, asset: string, workspace: Wor
       target.options.styles.splice(0, 0, styleEntry);
     }
   }
-  host.overwrite(getStylesPath('',getProjectFromWorkspace(workspace)),"@import '../node_modules/primeng/resources/themes/omega/theme.css';\n"+
-  "@import '../node_modules/primeicons/primeicons.css';\n"
-  +"@import '../node_modules/primeng/resources/primeng.min.css';\n"
-  +"@import '../node_modules/font-awesome/css/font-awesome.css';\n");
   host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
 }
 

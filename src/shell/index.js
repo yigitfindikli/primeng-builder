@@ -7,12 +7,6 @@ const lib_versions_1 = require("../utils/lib-versions");
 const package_1 = require("../utils/package");
 const config_1 = require("../utils/devkit-utils/config");
 const theming_1 = require("./theming");
-/**
- * Scaffolds the basics of a PrimeNG application, this includes:
- *  - Add Packages to package.json
- *  - Adds pre-built themes to styles.ext
- *  - Adds Browser Animation to app.momdule
- */
 function default_1(options) {
     return schematics_1.chain([
         options && options.skipPackageJson ? schematics_1.noop() : addPrimengToPackageJson(),
@@ -21,9 +15,6 @@ function default_1(options) {
     ]);
 }
 exports.default = default_1;
-/**
- * Add primeng packages to package.json if not already present.
- */
 function addPrimengToPackageJson() {
     return (host, context) => {
         package_1.addPackageToPackageJson(host, 'dependencies', 'primeng', lib_versions_1.primengVersion);
@@ -35,9 +26,6 @@ function addPrimengToPackageJson() {
         return host;
     };
 }
-/**
- * Add browser animation module to app.module.
- */
 function addAnimationRootConfig(options) {
     return (host) => {
         const workspace = config_1.getWorkspace(host);

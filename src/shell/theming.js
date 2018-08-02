@@ -3,25 +3,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const config_1 = require("../utils/devkit-utils/config");
 const ast_1 = require("../utils/ast");
-/**
- * Add pre-built styles to the main project style file.
- */
 function addThemeToAppStyles(options) {
     return function (host) {
         const workspace = config_1.getWorkspace(host);
         const project = config_1.getProjectFromWorkspace(workspace, options.project);
-        // Because the build setup for the Angular CLI can be changed so dramatically, we can't know
-        // where to generate anything if the project is not using the default config for build and test.
         assertDefaultProjectConfig(project);
         const themeName = options.theme || 'omega';
         insertPrebuiltTheme(project, host, themeName, workspace);
+        host.overwrite(ast_1.getStylesPath('', config_1.getProjectFromWorkspace(workspace)), "@import '../node_modules/primeng/resources/themes/" + themeName + "/theme.css';\n" +
+            "@import '../node_modules/primeicons/primeicons.css';\n"
+            + "@import '../node_modules/primeng/resources/primeng.min.css';\n"
+            + "@import '../node_modules/font-awesome/css/font-awesome.css';\n");
         return host;
     };
 }
 exports.addThemeToAppStyles = addThemeToAppStyles;
-/**
- * Insert a pre-built theme and its dependencies into the angular.json file.
- */
 function insertPrebuiltTheme(project, host, theme, workspace) {
     const themeFilePaths = [
         'node_modules/font-awesome/css/font-awesome.css',
@@ -59,10 +55,6 @@ function addStyleToTarget(target, host, asset, workspace) {
             target.options.styles.splice(0, 0, styleEntry);
         }
     }
-    host.overwrite(ast_1.getStylesPath('', config_1.getProjectFromWorkspace(workspace)), "@import '../node_modules/primeng/resources/themes/omega/theme.css';\n" +
-        "@import '../node_modules/primeicons/primeicons.css';\n"
-        + "@import '../node_modules/primeng/resources/primeng.min.css';\n"
-        + "@import '../node_modules/font-awesome/css/font-awesome.css';\n");
     host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
 }
 /**

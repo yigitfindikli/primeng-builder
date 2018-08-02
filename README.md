@@ -7,14 +7,14 @@ ng new <project name>
 ### Add Primeng
 
 ```bash
-ng add demoygtprmng
+ng add primeng-builder
 ```
 This will be import primeng dependencies.
 
 ### Create Primeng Sample Component
 
 ```bash
-ng g demoygtprmng:primeng-accordion --name <project name>
+ng g primeng-builder:accordion --name <project name>
 ```
 This will be import accordion module in your app module and create a component.
 
