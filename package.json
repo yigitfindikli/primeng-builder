@@ -1,7 +1,7 @@
 {
   "name": "primeng-builder",
-  "version": "1.0.0",
-  "description": "A blank schematics",
+  "version": "1.0.2",
+  "description": "Schematic for PrimeNg",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"

@@ -11,6 +11,14 @@ ng add primeng-builder
 ```
 This will be import primeng dependencies.
 
+### Change Default Theme
+
+Default theme is omega. If you want different theme, command should be like that.
+
+```bash
+ng add primeng-builder --theme lightness
+```
+
 ### Create Primeng Sample Component
 
 ```bash
