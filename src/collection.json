@@ -12,6 +12,12 @@
       "factory": "./accordion",
       "schema": "./accordion/schema.json",
       "aliases": [ "accordion" ]
+    },
+    "buttonModule": {
+      "description": "Adds PrimeNG button module",
+      "factory": "./button",
+      "schema": "./button/schema.json",
+      "aliases": [ "button" ]
     }
   }
 }
