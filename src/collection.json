@@ -18,6 +18,12 @@
       "factory": "./button",
       "schema": "./button/schema.json",
       "aliases": [ "button" ]
+    },
+    "scrollpanelModule": {
+      "description": "Adds PrimeNG button module",
+      "factory": "./scrollpanel",
+      "schema": "./scrollpanel/schema.json",
+      "aliases": [ "scrollpanel" ]
     }
   }
 }
