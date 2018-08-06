@@ -10,8 +10,8 @@
       "description": "Do not add primeng dependencies to package.json (e.g., --skipPackageJson)"
     },
     "theme": {
-      "enum": ["omega", "flick", "lightness", "kasper", "start"],
-      "default": "omega",
+      "enum": ["nova-light", "nova-dark", "nova-colored"],
+      "default": "nova-light",
       "description": "The theme to apply"
     }
   },

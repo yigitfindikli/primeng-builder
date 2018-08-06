@@ -4,7 +4,6 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { addModuleImportToRootModule } from '../utils/ast';
 import { 
   primengVersion, 
-  fontAwesomeVersion,
   primeiconsVersion, 
   angularVersion, 
   rxjsCompatVersion 
@@ -26,7 +25,7 @@ export default function(options: Schema): Rule {
 function addPrimengToPackageJson() {
   return (host: Tree, context: SchematicContext) => {
     addPackageToPackageJson(host, 'dependencies', 'primeng', primengVersion);
-    addPackageToPackageJson(host, 'dependencies', 'font-awesome', fontAwesomeVersion);
+    // addPackageToPackageJson(host, 'dependencies', 'font-awesome', fontAwesomeVersion);
     addPackageToPackageJson(host, 'dependencies', 'primeicons', primeiconsVersion);
     addPackageToPackageJson(host, 'dependencies', '@angular/animations', angularVersion);
     addPackageToPackageJson(host, 'devDependencies', 'rxjs-compat', rxjsCompatVersion);
