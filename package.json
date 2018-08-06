@@ -1,6 +1,6 @@
 {
   "name": "primeng-builder",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Schematic for PrimeNg",
   "scripts": {
     "build": "tsc -p tsconfig.json",
