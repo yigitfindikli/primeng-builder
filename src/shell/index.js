@@ -18,10 +18,8 @@ exports.default = default_1;
 function addPrimengToPackageJson() {
     return (host, context) => {
         package_1.addPackageToPackageJson(host, 'dependencies', 'primeng', lib_versions_1.primengVersion);
-        // addPackageToPackageJson(host, 'dependencies', 'font-awesome', fontAwesomeVersion);
         package_1.addPackageToPackageJson(host, 'dependencies', 'primeicons', lib_versions_1.primeiconsVersion);
         package_1.addPackageToPackageJson(host, 'dependencies', '@angular/animations', lib_versions_1.angularVersion);
-        package_1.addPackageToPackageJson(host, 'devDependencies', 'rxjs-compat', lib_versions_1.rxjsCompatVersion);
         context.addTask(new tasks_1.NodePackageInstallTask());
         return host;
     };

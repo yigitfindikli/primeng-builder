@@ -17,20 +17,28 @@ export function addThemeToAppStyles(options: Schema): (host: Tree) => Tree {
     
     assertDefaultProjectConfig(project);
 
-    const themeName = options.theme || 'omega';
+    // const themeName = options.theme || 'nova-light';
+    const themeName=controlThemeName(options.theme);
     insertPrebuiltTheme(project, host, themeName, workspace);
     host.overwrite(getStylesPath('',getProjectFromWorkspace(workspace)),"@import '../node_modules/primeng/resources/themes/"+themeName+"/theme.css';\n"+
   "@import '../node_modules/primeicons/primeicons.css';\n"
   +"@import '../node_modules/primeng/resources/primeng.min.css';\n"
-  +"@import '../node_modules/font-awesome/css/font-awesome.css';\n");
+);
     return host;
   };
+}
+
+function controlThemeName(theme:any){
+
+  if(theme!='nova-dark'&&theme!='nova-colored'){
+    theme='nova-light';
+  }
+  return theme;
 }
 
 
 function insertPrebuiltTheme(project: Project, host: Tree, theme: string, workspace: Workspace) {
   const themeFilePaths = [
-    'node_modules/font-awesome/css/font-awesome.css',
     'node_modules/primeicons/primeicons.css',
     `node_modules/primeng/resources/themes/${theme}/theme.css`,
     'node_modules/primeng/resources/primeng.min.css'

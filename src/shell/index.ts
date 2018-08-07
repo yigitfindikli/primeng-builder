@@ -6,7 +6,7 @@ import {
   primengVersion, 
   primeiconsVersion, 
   angularVersion, 
-  rxjsCompatVersion 
+  // rxjsCompatVersion 
 } from '../utils/lib-versions';
 import { addPackageToPackageJson } from '../utils/package';
 import { getProjectFromWorkspace, getWorkspace } from '../utils/devkit-utils/config';
@@ -25,10 +25,8 @@ export default function(options: Schema): Rule {
 function addPrimengToPackageJson() {
   return (host: Tree, context: SchematicContext) => {
     addPackageToPackageJson(host, 'dependencies', 'primeng', primengVersion);
-    // addPackageToPackageJson(host, 'dependencies', 'font-awesome', fontAwesomeVersion);
     addPackageToPackageJson(host, 'dependencies', 'primeicons', primeiconsVersion);
     addPackageToPackageJson(host, 'dependencies', '@angular/animations', angularVersion);
-    addPackageToPackageJson(host, 'devDependencies', 'rxjs-compat', rxjsCompatVersion);
     context.addTask(new NodePackageInstallTask());
     return host;
   };
