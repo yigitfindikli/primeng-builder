@@ -11,8 +11,22 @@
     },
     "theme": {
       "type":"string",
-      "default": "nova-light",
-      "description": "The theme to apply"
+      "description": "The theme to apply",
+      "x-prompt": {
+        "message":
+          "Which theme would you like to use for your workspace?",
+        "type": "list",
+        "items": [
+          { "value": "nova-dark", "label": "Nova Dark" },
+          { "value": "nova-light", "label": "Nova Light" },
+          { "value": "nova-colored", "label": "Nova Colored" },
+          { "value": "luna-amber", "label": "Luna Amber" },
+          { "value": "luna-blue", "label": "Luna Blue" },
+          { "value": "luna-green", "label": "Luna Green" },
+          { "value": "luna-pink", "label": "Luna Pink" },
+          { "value": "rhea", "label": "Rhea" }
+        ]
+      }
     }
   },
   "required": []

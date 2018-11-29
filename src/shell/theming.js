@@ -8,8 +8,7 @@ function addThemeToAppStyles(options) {
         const workspace = config_1.getWorkspace(host);
         const project = config_1.getProjectFromWorkspace(workspace, options.project);
         assertDefaultProjectConfig(project);
-        // const themeName = options.theme || 'nova-light';
-        const themeName = controlThemeName(options.theme);
+        const themeName = options.theme;
         insertPrebuiltTheme(project, host, themeName, workspace);
         host.overwrite(ast_1.getStylesPath('', config_1.getProjectFromWorkspace(workspace)), "@import '../node_modules/primeng/resources/themes/" + themeName + "/theme.css';\n" +
             "@import '../node_modules/primeicons/primeicons.css';\n"
@@ -18,12 +17,6 @@ function addThemeToAppStyles(options) {
     };
 }
 exports.addThemeToAppStyles = addThemeToAppStyles;
-function controlThemeName(theme) {
-    if (theme != 'nova-dark' && theme != 'nova-colored') {
-        theme = 'nova-light';
-    }
-    return theme;
-}
 function insertPrebuiltTheme(project, host, theme, workspace) {
     const themeFilePaths = [
         'node_modules/primeicons/primeicons.css',
@@ -40,31 +33,22 @@ function insertPrebuiltTheme(project, host, theme, workspace) {
         }
     });
 }
-/**
- * Adds a style entry to the given target.
- */
 function addStyleToTarget(target, host, asset, workspace) {
-    const styleEntry = { input: asset };
-    // We can't assume that any of these properties are defined, so safely add them as we go
-    // if necessary.
     if (!target.options) {
-        target.options = { styles: [styleEntry] };
+        target.options = { styles: [asset] };
     }
     else if (!target.options.styles) {
-        target.options.styles = [styleEntry];
+        target.options.styles = [asset];
     }
     else {
         const existingStyles = target.options.styles.map((s) => typeof s === 'string' ? s : s.input);
         const hasGivenTheme = existingStyles.find((s) => s.includes(asset));
         if (!hasGivenTheme) {
-            target.options.styles.splice(0, 0, styleEntry);
+            target.options.styles.splice(0, 0, asset);
         }
     }
     host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
 }
-/**
- * Throws if the project is not using the default build and test config.
- */
 function assertDefaultProjectConfig(project) {
     if (!isProjectUsingDefaultConfig(project)) {
         throw new schematics_1.SchematicsException('Your project is not using the default configuration for ' +
@@ -72,9 +56,6 @@ function assertDefaultProjectConfig(project) {
             'configuration');
     }
 }
-/**
- * Gets whether the Angular CLI project is using the default build configuration.
- */
 function isProjectUsingDefaultConfig(project) {
     const defaultBuilder = '@angular-devkit/build-angular:browser';
     return project.architect &&
